@@ -10,7 +10,7 @@ public class Teacher implements Serializable {
     //用户基本信息
     private UserInfo info;
     //是否认证
-    private boolean authority;
+    private int authority;
 
     public UserInfo getInfo() {
         return info;
@@ -20,11 +20,19 @@ public class Teacher implements Serializable {
         this.info = info;
     }
 
-    public boolean isAuthority() {
+    public int getAuthority() {
         return authority;
     }
 
-    public void setAuthority(boolean authority) {
+    public void setAuthority(int authority) {
         this.authority = authority;
+    }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "info=" + info.toString() +
+                ", authority=" + authority +
+                '}';
     }
 }

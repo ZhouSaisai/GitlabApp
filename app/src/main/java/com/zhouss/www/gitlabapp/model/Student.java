@@ -12,7 +12,7 @@ public class Student implements Serializable {
     //git账号
     private int gitId;
     //git用户名
-    private int gitUsername;
+    private String gitUsername;
     //学号，如"141250123"
     private String number;
 
@@ -32,11 +32,11 @@ public class Student implements Serializable {
         this.gitId = gitId;
     }
 
-    public int getGitUsername() {
+    public String getGitUsername() {
         return gitUsername;
     }
 
-    public void setGitUsername(int gitUsername) {
+    public void setGitUsername(String gitUsername) {
         this.gitUsername = gitUsername;
     }
 
@@ -46,5 +46,15 @@ public class Student implements Serializable {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "info=" + info.toString() +
+                ", gitId=" + gitId +
+                ", gitUsername=" + gitUsername +
+                ", number='" + number + '\'' +
+                '}';
     }
 }

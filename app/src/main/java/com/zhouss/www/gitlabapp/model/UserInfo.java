@@ -79,4 +79,17 @@ public class UserInfo {
     public void setSchoolId(int schoolId) {
         this.schoolId = schoolId;
     }
+
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "username='" + username + '\'' +
+                ", name='" + name + '\'' +
+                ", type=" + type +
+                ", avatar='" + avatar + '\'' +
+                ", gender=" + gender +
+                ", email='" + email + '\'' +
+                ", schoolId=" + schoolId +
+                '}';
+    }
 }

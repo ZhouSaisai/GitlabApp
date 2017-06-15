@@ -15,9 +15,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.zhouss.www.gitlabapp.R;
+import com.zhouss.www.gitlabapp.enums.Sex;
+import com.zhouss.www.gitlabapp.enums.UserType;
+import com.zhouss.www.gitlabapp.model.Student;
+import com.zhouss.www.gitlabapp.model.Teacher;
+import com.zhouss.www.gitlabapp.model.UserInfo;
 import com.zhouss.www.gitlabapp.util.HttpUtil;
 import com.zhouss.www.gitlabapp.util.MyApplication;
 import com.zhouss.www.gitlabapp.util.TokenUtil;
+
+import org.json.JSONObject;
 
 import java.io.IOException;
 import okhttp3.Call;
@@ -53,7 +60,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             switch (msg.what){
                 case LOGIN_SUCCESS:
                     Intent intent = new Intent();
-                    intent.setClass(MyApplication.getContext(),THomeActivity.class);
+                    if(TokenUtil.getType()==UserType.TEACHER){
+                        intent.setClass(MyApplication.getContext(),THomeActivity.class);
+                    }else{
+                        intent.setClass(MyApplication.getContext(),SHomeActivity.class);
+                    }
                     startActivity(intent);
                     break;
                 case LOGIN_FAIL:
@@ -193,8 +204,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                     message.what=LOGIN_ERROR;
                     handler.sendMessage(message);
                 }else{
-
-                    Log.d("result",responseData);
+                    parseJSON(responseData);
                     Message message = new Message();
                     message.what=LOGIN_SUCCESS;
                     handler.sendMessage(message);
@@ -204,6 +214,40 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
     }
 
+    private void parseJSON(String responseData) {
+        try{
+            JSONObject json = new JSONObject(responseData);
+            String type = json.getString("type");
+            //构造用户对象
+            UserInfo info = new UserInfo();
+            info.setUsername(json.getString("username"));
+            info.setName(json.getString("name"));
+            info.setAvatar(json.getString("avatar"));
+            info.setGender(Sex.valueOf(json.getString("gender").toUpperCase()));
+            info.setEmail(json.getString("email"));
+            info.setSchoolId(json.getInt("schoolId"));
+            //细化类型
+            if(type.equals("teacher")){
+                TokenUtil.setType(UserType.TEACHER);
+                info.setType(UserType.TEACHER);
+                Teacher teacher = new Teacher();
+                teacher.setAuthority(json.getInt("authority"));
+                teacher.setInfo(info);
+//                Log.d("teacher",teacher.toString());
+            }else if(type.equals("student")){
+                TokenUtil.setType(UserType.STUDENT);
+                info.setType(UserType.STUDENT);
+                Student student = new Student();
+                student.setInfo(info);
+                student.setGitId(json.getInt("gitId"));
+                student.setGitUsername(json.getString("gitUsername"));
+                student.setNumber(json.getString("number"));
+                Log.d("student",student.toString());
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 
 }
