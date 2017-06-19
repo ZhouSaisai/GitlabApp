@@ -20,7 +20,7 @@ public class TokenUtil {
     }
 
     public static String getToken() {
-        return token;
+        return token.trim();
     }
 
     public static UserType getType() {

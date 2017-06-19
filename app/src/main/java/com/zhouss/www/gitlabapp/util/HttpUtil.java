@@ -80,7 +80,7 @@ public class HttpUtil {
 //    });
 
     public static final MediaType MEDIA_TYPE_JSON = MediaType.parse("application/json; charset=utf-8");
-    public static final String URL = "http://115.29.184.56:8090/api/";
+    public static final String URL = "http://115.29.184.56:8090/api";
 
     public static void sendGetOkHttpRequest(String address,okhttp3.Callback callback){
         OkHttpClient client = new OkHttpClient();
