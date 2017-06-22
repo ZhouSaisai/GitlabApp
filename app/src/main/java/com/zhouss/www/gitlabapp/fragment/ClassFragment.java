@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +19,9 @@ import android.widget.Toast;
 
 import com.zhouss.www.gitlabapp.R;
 import com.zhouss.www.gitlabapp.activity.THomeActivity;
+import com.zhouss.www.gitlabapp.adapter.ClassAdapter;
 import com.zhouss.www.gitlabapp.adapter.ClassStudentAdapter;
+import com.zhouss.www.gitlabapp.model.Class;
 import com.zhouss.www.gitlabapp.model.ClassStudent;
 import com.zhouss.www.gitlabapp.util.HttpUtil;
 import com.zhouss.www.gitlabapp.util.JSONUtil;
@@ -38,34 +42,29 @@ import okhttp3.Response;
  * Created by zs on 2017/6/16.
  */
 
-public class StudentFragment extends Fragment {
+
+public class ClassFragment extends Fragment {
     //信号区
     private static final int QUERY_FAIL = 1;
     private static final int QUERY_SUCCESS = 2;
 
-    //组件区
-    private TextView title_bar;
-    private Button back_button;
-    private Button add_button;
-
     //list区
-    private ListView studentListView;
-    private List<ClassStudent> studentList = new ArrayList<>();
-    private ClassStudentAdapter studentAdapter;
+    private ListView classListView;
+    private List<Class> classList = new ArrayList<>();
+    private ClassAdapter classArrayAdapter;
 
-    //对应班级
-    private int classId = 1;
-    private String cName = "";
+    //选中的班级
+    private Class selectClass;
 
     //异步更新UI-hander
     private Handler handler = new Handler(){
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case QUERY_SUCCESS:
-                    List<ClassStudent> nls  = DataSupport.where("groupId = ?",classId+"").order("csId").find(ClassStudent.class);
-                    studentList.clear();
-                    studentList.addAll(nls);
-                    studentAdapter.notifyDataSetChanged();
+                    List<Class> newList = DataSupport.order("cId").find(Class.class);
+                    classList.clear();
+                    classList.addAll(newList);
+                    classArrayAdapter.notifyDataSetChanged();
                     ProgressUtil.closeProgressDialog();
                     break;
                 case QUERY_FAIL:
@@ -82,61 +81,61 @@ public class StudentFragment extends Fragment {
         super.onAttach(context);
         if (context instanceof THomeActivity) {
             THomeActivity activity = (THomeActivity) context;
-            title_bar = (TextView) activity.findViewById(R.id.title_bar);
-            back_button = (Button) activity.findViewById(R.id.back_button);
-            add_button = (Button) activity.findViewById(R.id.add_button);
-
-            title_bar.setText("学生列表");
+            TextView title_bar = (TextView) activity.findViewById(R.id.title_bar);
+            Button add_button = (Button) activity.findViewById(R.id.add_button);
+            Button back_button = (Button) activity.findViewById(R.id.back_button);
+            title_bar.setText("我的班级");
             add_button.setVisibility(View.VISIBLE);
-            back_button.setVisibility(View.VISIBLE);
+            back_button.setVisibility(View.INVISIBLE);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.t_student_frag, container, false);
-
-        Bundle bundle = getArguments();
-        classId = bundle.getInt("classId");
-        cName = bundle.getString("cName");
-        title_bar.setText(cName);
-
-        studentListView =  (ListView)view.findViewById(R.id.students_list);
-        queryStudents();
-        studentAdapter = new ClassStudentAdapter(MyApplication.getContext(),R.layout.class_item,studentList);
-        studentListView.setAdapter(studentAdapter);
-
+        View view = inflater.inflate(R.layout.t_class_frag, container, false);
+        classListView = (ListView) view.findViewById(R.id.class_list);
+        queryAllClass();
+        classArrayAdapter = new ClassAdapter(MyApplication.getContext(),R.layout.class_item,classList);
+        classListView.setAdapter(classArrayAdapter);
         return view;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        studentListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        classListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                selectClass = classList.get(position);
-//                classListView.setVisibility(View.INVISIBLE);
-//                queryStudents();
+                selectClass = classList.get(position);
+                classListView.setVisibility(View.INVISIBLE);
+                FragmentManager manager = getFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                StudentFragment studentFragment = new StudentFragment();
+                //传递参数
+                Bundle bundle = new Bundle();
+                bundle.putInt("classId", selectClass.getcId());
+                bundle.putString("cName",selectClass.getName());
+                studentFragment.setArguments(bundle);
+
+                transaction.replace(R.id.content, studentFragment);
+                transaction.commit();
             }
         });
     }
 
     /**
-     * 查询班级对应的全部学生
+     * 查询老师对应的全部班级
      */
-    private void queryStudents(){
-        studentList = DataSupport.where("groupId = ?",classId+"").order("csId").find(ClassStudent.class);
-        if(studentList.size()>0){
-            studentListView.setSelection(0);
+    private void queryAllClass(){
+        classList = DataSupport.order("cId").find(Class.class);
+        if(classList.size()>0){
+            classListView.setSelection(0);
         } else {
-            String address = HttpUtil.URL+"/group/"+classId+"/students";
+            String address = HttpUtil.URL+"/group";
             queryFromServer(address);
         }
 
     }
-
-
 
     private void queryFromServer(String address) {
         ProgressUtil.showProgressDialog(getActivity());
@@ -151,10 +150,10 @@ public class StudentFragment extends Fragment {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String resultData = response.body().string();
-                boolean result = JSONUtil.handlStudentResponse(resultData);
+                boolean result = JSONUtil.handlClassResponse(resultData);
                 if(result){
                     Message message = new Message();
-                    message.what=QUERY_SUCCESS;
+                    message.what= QUERY_SUCCESS;
                     handler.sendMessage(message);
                 }
 

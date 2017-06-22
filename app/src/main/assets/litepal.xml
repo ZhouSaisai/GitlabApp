@@ -3,7 +3,7 @@
 
     <dbname value="gitlab" />
 
-    <version value="1" />
+    <version value="2" />
 
     <!--
     	Define your models in the list with mapping tag, LitePal will
@@ -17,6 +17,7 @@
     -->
     <list>
         <mapping class="com.zhouss.www.gitlabapp.model.Class" />
+        <mapping class="com.zhouss.www.gitlabapp.model.ClassStudent" />
     </list>
 
     <!--

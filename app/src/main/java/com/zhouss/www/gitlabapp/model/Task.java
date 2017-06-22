@@ -1,6 +1,6 @@
 package com.zhouss.www.gitlabapp.model;
 
-import com.zhouss.www.gitlabapp.enums.TaskType;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
@@ -10,7 +10,8 @@ import java.util.List;
 
 public class Task {
     //"id": 3,
-    private int id;
+    @SerializedName("id")
+    private int tId;
 
     //"title": "考试1",
     private String title;
@@ -31,17 +32,32 @@ public class Task {
     private int course;
 
     //"status":
-    private TaskType status;
+    private String status;
 
     //"currentTime": "2017-05-26 11:24:12"
     private String currentTime;
 
-    public int getId() {
-        return id;
+    public Task() {
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Task(int tId, String title, String description, String startAt, String endAt, List<Question> questions, int course, String status, String currentTime) {
+        this.tId = tId;
+        this.title = title;
+        this.description = description;
+        this.startAt = startAt;
+        this.endAt = endAt;
+        this.questions = questions;
+        this.course = course;
+        this.status = status;
+        this.currentTime = currentTime;
+    }
+
+    public int gettId() {
+        return tId;
+    }
+
+    public void settId(int tId) {
+        this.tId = tId;
     }
 
     public String getTitle() {
@@ -92,11 +108,11 @@ public class Task {
         this.course = course;
     }
 
-    public TaskType getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(TaskType status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -106,5 +122,20 @@ public class Task {
 
     public void setCurrentTime(String currentTime) {
         this.currentTime = currentTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "tId=" + tId +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", startAt='" + startAt + '\'' +
+                ", endAt='" + endAt + '\'' +
+                ", questions=" + questions.toString() +
+                ", course=" + course +
+                ", status='" + status + '\'' +
+                ", currentTime='" + currentTime + '\'' +
+                '}';
     }
 }

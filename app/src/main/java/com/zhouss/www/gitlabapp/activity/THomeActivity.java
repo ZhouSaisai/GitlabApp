@@ -4,11 +4,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.zhouss.www.gitlabapp.R;
-import com.zhouss.www.gitlabapp.fragment.StudentFragment;
+import com.zhouss.www.gitlabapp.fragment.ClassFragment;
+import com.zhouss.www.gitlabapp.fragment.MyFragment;
+import com.zhouss.www.gitlabapp.fragment.TaskFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,14 +20,15 @@ import java.util.List;
  * Created by zs on 2017/6/14.
  */
 
-public class THomeActivity extends BaseActivity implements BottomNavigationBar.OnTabSelectedListener{
+public class THomeActivity extends BaseActivity implements View.OnClickListener,BottomNavigationBar.OnTabSelectedListener{
     private BottomNavigationBar mBottomNavigationBar;
-    private StudentFragment studentFragment;
-
-
+    private ClassFragment classFragment;
+    private TaskFragment taskFragment;
+    private MyFragment myFragment;
     private FragmentManager fm;
 
     List<Fragment> list = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,7 @@ public class THomeActivity extends BaseActivity implements BottomNavigationBar.O
         setDefaultFragment();
     }
 
+
     @Override
     public void onTabSelected(int position) {
         FragmentTransaction transaction = fm.beginTransaction();
@@ -53,41 +58,32 @@ public class THomeActivity extends BaseActivity implements BottomNavigationBar.O
         hideFragment(transaction);
         switch (position) {
             case 0:
-                if (studentFragment == null) {
-                    studentFragment = new StudentFragment();
-                    transaction.add(R.id.content, studentFragment);
-                    list.add(studentFragment);
+                if (classFragment == null) {
+                    classFragment = new ClassFragment();
+                    transaction.add(R.id.content, classFragment);
+                    list.add(classFragment);
                 } else {
-                    transaction.show(studentFragment);
+                    transaction.show(classFragment);
                 }
                 break;
-//            case 1:
-//                if (musicFragment == null) {
-//                    musicFragment = new MusicFragment();
-//                    transaction.add(R.id.layFrame, musicFragment);
-//                    list.add(musicFragment);
-//                } else {
-//                    transaction.show(musicFragment);
-//                }
-//                break;
-//            case 2:
-//                if (tvFragment == null) {
-//                    tvFragment = new TvFragment();
-//                    transaction.add(R.id.layFrame, tvFragment);
-//                    list.add(tvFragment);
-//                } else {
-//                    transaction.show(tvFragment);
-//                }
-//                break;
-//            case 3:
-//                if (gameFragment == null) {
-//                    gameFragment = new GameFragment();
-//                    transaction.add(R.id.layFrame, gameFragment);
-//                    list.add(gameFragment);
-//                } else {
-//                    transaction.show(gameFragment);
-//                }
-//                break;
+            case 1:
+                if (taskFragment == null) {
+                    taskFragment = new TaskFragment();
+                    transaction.add(R.id.content, taskFragment);
+                    list.add(taskFragment);
+                } else {
+                    transaction.show(taskFragment);
+                }
+                break;
+            case 2:
+                if (myFragment == null) {
+                    myFragment = new MyFragment();
+                    transaction.add(R.id.content, myFragment);
+                    list.add(myFragment);
+                } else {
+                    transaction.show(myFragment);
+                }
+                break;
         }
         transaction.commit();
 
@@ -118,14 +114,22 @@ public class THomeActivity extends BaseActivity implements BottomNavigationBar.O
     private void setDefaultFragment(){
         fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        if (studentFragment == null) {
-            studentFragment = new StudentFragment();
-            transaction.add(R.id.content, studentFragment);
-            list.add(studentFragment);
+        if (classFragment == null) {
+            classFragment = new ClassFragment();
+            transaction.add(R.id.content, classFragment);
+            list.add(classFragment);
         } else {
-            transaction.show(studentFragment);
+            transaction.show(classFragment);
         }
         transaction.commit();
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.back_button:
+                getSupportFragmentManager().popBackStack();
+                break;
+        }
+    }
 }

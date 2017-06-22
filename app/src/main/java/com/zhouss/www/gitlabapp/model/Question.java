@@ -1,6 +1,6 @@
 package com.zhouss.www.gitlabapp.model;
 
-import com.zhouss.www.gitlabapp.enums.TaskType;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by zs on 2017/6/12.
@@ -8,7 +8,8 @@ import com.zhouss.www.gitlabapp.enums.TaskType;
 
 class Question {
     //"id": 1,
-    private int id;
+    @SerializedName("id")
+    private int qId;
 
     //"title": "题目1",
     private String title;
@@ -23,10 +24,10 @@ class Question {
     private String gitUrl;
 
     //"type": "exam",
-    private TaskType type;
+    private String type;
 
     //创建者
-    private Teacher creator;
+    private Creator creator;
 
     //"duration": 0,
     private int duration;
@@ -34,16 +35,34 @@ class Question {
     //"link": -1,
     private int link;
 
-    //TODO "knowledgeVos": null
+    //"knowledgeVos": null
     private String knowledgeVos;
 
-    public int getId() {
-        return id;
+
+    public Question() {
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Question(int qId, String title, String description, String difficulty, String gitUrl, String type, Creator creator, int duration, int link, String knowledgeVos) {
+        this.qId = qId;
+        this.title = title;
+        this.description = description;
+        this.difficulty = difficulty;
+        this.gitUrl = gitUrl;
+        this.type = type;
+        this.creator = creator;
+        this.duration = duration;
+        this.link = link;
+        this.knowledgeVos = knowledgeVos;
     }
+
+    public int getqId() {
+        return qId;
+    }
+
+    public void setqId(int qId) {
+        this.qId = qId;
+    }
+
 
     public String getTitle() {
         return title;
@@ -77,19 +96,19 @@ class Question {
         this.gitUrl = gitUrl;
     }
 
-    public TaskType getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(TaskType type) {
+    public void setType(String type) {
         this.type = type;
     }
 
-    public Teacher getCreator() {
+    public Creator getCreator() {
         return creator;
     }
 
-    public void setCreator(Teacher creator) {
+    public void setCreator(Creator creator) {
         this.creator = creator;
     }
 
@@ -115,6 +134,22 @@ class Question {
 
     public void setKnowledgeVos(String knowledgeVos) {
         this.knowledgeVos = knowledgeVos;
+    }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "qId=" + qId +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", difficulty='" + difficulty + '\'' +
+                ", gitUrl='" + gitUrl + '\'' +
+                ", type='" + type + '\'' +
+                ", creator=" + creator.toString() +
+                ", duration=" + duration +
+                ", link=" + link +
+                ", knowledgeVos='" + knowledgeVos + '\'' +
+                '}';
     }
 }
 
