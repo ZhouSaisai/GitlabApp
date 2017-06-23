@@ -1,12 +1,10 @@
 package com.zhouss.www.gitlabapp.util;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.zhouss.www.gitlabapp.model.Class;
 import com.zhouss.www.gitlabapp.model.ClassStudent;
-import com.zhouss.www.gitlabapp.model.Student;
 import com.zhouss.www.gitlabapp.model.Task;
 
 import org.json.JSONArray;

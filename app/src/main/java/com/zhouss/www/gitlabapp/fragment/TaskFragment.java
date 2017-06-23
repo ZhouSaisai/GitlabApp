@@ -9,7 +9,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,19 +18,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
 import com.zhouss.www.gitlabapp.R;
 import com.zhouss.www.gitlabapp.activity.THomeActivity;
 import com.zhouss.www.gitlabapp.adapter.TaskAdapter;
-import com.zhouss.www.gitlabapp.model.Class;
 import com.zhouss.www.gitlabapp.model.Task;
 import com.zhouss.www.gitlabapp.util.HttpUtil;
 import com.zhouss.www.gitlabapp.util.JSONUtil;
 import com.zhouss.www.gitlabapp.util.MyApplication;
-import com.zhouss.www.gitlabapp.util.ProgressUtil;
-
-import org.litepal.crud.DataSupport;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,8 +33,6 @@ import java.util.List;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
-
-import static android.R.color.white;
 
 /**
  * Created by zs on 2017/6/16.

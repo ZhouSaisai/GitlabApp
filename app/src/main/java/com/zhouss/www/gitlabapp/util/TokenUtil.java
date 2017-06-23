@@ -1,6 +1,7 @@
 package com.zhouss.www.gitlabapp.util;
 
 import android.util.Base64;
+
 import com.zhouss.www.gitlabapp.enums.UserType;
 
 /**

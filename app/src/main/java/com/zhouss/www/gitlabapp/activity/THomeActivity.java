@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
@@ -27,6 +29,11 @@ public class THomeActivity extends BaseActivity implements View.OnClickListener,
     private MyFragment myFragment;
     private FragmentManager fm;
 
+    //组件区
+    private TextView title_bar;
+    private Button add_button;
+    private Button back_button;
+
     List<Fragment> list = new ArrayList<>();
 
 
@@ -42,6 +49,10 @@ public class THomeActivity extends BaseActivity implements View.OnClickListener,
                 .setFirstSelectedPosition(0)//设置默认选择item
                 .initialise();//初始化
         mBottomNavigationBar.setTabSelectedListener(this);
+
+        title_bar = (TextView) findViewById(R.id.title_bar);
+        add_button = (Button) findViewById(R.id.add_button);
+        back_button = (Button) findViewById(R.id.back_button);
         setDefaultFragment();
     }
 
@@ -65,6 +76,9 @@ public class THomeActivity extends BaseActivity implements View.OnClickListener,
                 } else {
                     transaction.show(classFragment);
                 }
+                title_bar.setText("我的班级");
+                add_button.setVisibility(View.VISIBLE);
+                back_button.setVisibility(View.INVISIBLE);
                 break;
             case 1:
                 if (taskFragment == null) {
@@ -74,6 +88,9 @@ public class THomeActivity extends BaseActivity implements View.OnClickListener,
                 } else {
                     transaction.show(taskFragment);
                 }
+                title_bar.setText("发布的任务");
+                add_button.setVisibility(View.VISIBLE);
+                back_button.setVisibility(View.INVISIBLE);
                 break;
             case 2:
                 if (myFragment == null) {
@@ -83,6 +100,9 @@ public class THomeActivity extends BaseActivity implements View.OnClickListener,
                 } else {
                     transaction.show(myFragment);
                 }
+                title_bar.setText("个人空间");
+                add_button.setVisibility(View.INVISIBLE);
+                back_button.setVisibility(View.INVISIBLE);
                 break;
         }
         transaction.commit();

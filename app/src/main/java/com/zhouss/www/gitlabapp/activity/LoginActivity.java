@@ -1,11 +1,12 @@
 package com.zhouss.www.gitlabapp.activity;
 
 
-
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.zhouss.www.gitlabapp.R;
 import com.zhouss.www.gitlabapp.enums.Sex;
 import com.zhouss.www.gitlabapp.enums.UserType;
@@ -27,6 +29,7 @@ import com.zhouss.www.gitlabapp.util.TokenUtil;
 import org.json.JSONObject;
 
 import java.io.IOException;
+
 import okhttp3.Call;
 import okhttp3.RequestBody;
 import okhttp3.Response;
@@ -215,6 +218,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     }
 
     private void parseJSON(String responseData) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext());
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("user",responseData);
+        editor.apply();
+
         try{
             JSONObject json = new JSONObject(responseData);
             String type = json.getString("type");
