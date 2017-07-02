@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textAlignment="center"
-            android:text="任务详情"
+            android:text="问题详情"
             android:textColor="#fff"
             android:textSize="20sp" />
 
@@ -44,23 +44,22 @@
 
     </RelativeLayout>
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="36dp"
-        android:layout_marginTop="6dp" >
+        android:layout_marginTop="40dp" >
 
         <ImageView
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_marginStart="31dp"
-            app:srcCompat="@drawable/line_header" />
+            android:src="@drawable/line_header" />
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="30dp"
-            app:srcCompat="@drawable/line"
+            android:src="@drawable/line"
             android:layout_marginTop="8dp" />
 
         <TextView
@@ -82,166 +81,107 @@
         android:layout_height="1.75dp"
         android:layout_marginTop="-2.3dp"
         android:background="@color/red"
-    />
-
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_marginTop="10dp"
-        android:paddingStart="40dp">
+        android:layout_marginTop="10dp">
 
         <TextView
-            android:layout_width="80dp"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="30dp"
             android:gravity="center"
-            android:text=" 任务名:"
+            android:text=" 问题:"
             android:textColor="#444444"
             android:textSize="18sp"
             android:textAlignment="center"/>
 
         <TextView
-            android:id="@+id/t_title"
+            android:id="@+id/q_title"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="140dp"
+            android:layout_marginStart="100dp"
             android:gravity="center|left"
-            android:text="考试一"
+            android:text="问题一"
             android:textSize="18sp"
-            android:textColor="#444444"
-            android:textAlignment="center"/>
+            android:textColor="#444444"/>
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:paddingStart="40dp" >
-
+        android:layout_height="30dp">
         <TextView
-            android:layout_width="80dp"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="30dp"
             android:gravity="center"
-            android:text="任务ID:"
+            android:text=" 难度:"
             android:textColor="#444444"
             android:textSize="18sp"
             android:textAlignment="center"/>
 
         <TextView
-            android:id="@+id/t_item_id"
+            android:id="@+id/q_level"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="140dp"
-            android:gravity="center_vertical|left"
-            android:text="1"
+            android:layout_marginStart="100dp"
+            android:gravity="center|left"
+            android:text="3"
             android:textSize="18sp"
-            android:textColor="#444444"
-            android:textAlignment="center"/>
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:paddingStart="40dp">
-
-        <TextView
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical|right"
-            android:text="任务状态:"
-            android:layout_marginStart="48dp"
-            android:textColor="#444444"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/t_status"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="140dp"
-            android:gravity="center_vertical|left"
-            android:text="初始化完成"
-            android:textSize="18sp"
-            android:textColor="#444444" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_height="30dp"
-        android:layout_width="match_parent"
-        android:paddingStart="40dp" >
-
-        <TextView
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical|right"
-            android:text="开始时间:"
-            android:layout_marginStart="48dp"
-            android:textColor="#444444"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/t_start"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="140dp"
-            android:gravity="center_vertical|left"
-            android:text="2015-33-33 22:22"
-            android:textSize="18sp"
-            android:textColor="#444444" />
-
+            android:textColor="#444444"/>
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:paddingStart="40dp" >
+        android:layout_height="50dp">
 
         <TextView
-            android:layout_width="80dp"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:gravity="center_vertical|right"
-            android:layout_marginStart="48dp"
-            android:text="结束时间:"
+            android:layout_marginStart="30dp"
+            android:gravity="center"
+            android:text=" 链接:"
+            android:textAlignment="center"
             android:textColor="#444444"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/t_end"
+            android:id="@+id/q_url"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="140dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="20dp"
             android:gravity="center_vertical|left"
-            android:text="2015-33-33 22:22"
-            android:textSize="18sp"
-            android:textColor="#444444" />
-
+            android:text="http://115.29.184.56:10080/Mooc-CSE-I-2017/Exercise013-IsPalindrome.git"
+            android:textColor="#444444"
+            android:textSize="16sp" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:paddingStart="40dp">
+        android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="48dp"
-            android:gravity="center_vertical|left"
-            android:text="描述:"
-            android:paddingLeft="4dp"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="30dp"
+            android:gravity="center"
+            android:text=" 描述:"
+            android:textAlignment="center"
             android:textColor="#444444"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/t_description"
+            android:id="@+id/q_description"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="105dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="3dp"
             android:gravity="center_vertical|left"
-            android:text="考试一"
+            android:text="编写一个程序，让用户输入3个数。首先确认所有数字各不相同，如果存在相同的数，输出 There are same numbers .，否则输出其中最大的数"
             android:textColor="#444444"
             android:textSize="18sp" />
     </RelativeLayout>
@@ -262,10 +202,10 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
             android:gravity="center_vertical"
-            android:text="问题列表"
+            android:text="出题人"
             android:textColor="@color/red"
             android:textSize="20sp" />
 
@@ -274,14 +214,14 @@
             android:layout_height="30dp"
             android:layout_marginEnd="30dp"
             android:layout_alignParentRight="true"
-            app:srcCompat="@drawable/line_down" />
+            android:src="@drawable/line_down" />
 
         <ImageView
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_marginEnd="31dp"
             android:layout_alignParentRight="true"
-            app:srcCompat="@drawable/line_header"
+            android:src="@drawable/line_header"
             android:layout_marginTop="10dp"/>
 
     </RelativeLayout>
@@ -290,29 +230,109 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
-        android:background="#cccccc"
+        android:background="@color/red"
         />
 
-
-
-    <ListView
-        android:id="@+id/question_list"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_marginTop="10dp"
+        android:layout_height="30dp">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:gravity="center"
+            android:text="账户:"
+            android:textAlignment="center"
+            android:textColor="#444444"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/q_creator_username"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="40dp"
+            android:gravity="center"
+            android:text="liuqin"
+            android:textColor="#444"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:gravity="center"
+            android:text="姓名:"
+            android:textAlignment="center"
+            android:textColor="#444444"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/q_creator_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="40dp"
+            android:gravity="center"
+            android:text="刘钦"
+            android:textColor="#444"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:gravity="center"
+            android:text="邮箱:"
+            android:textAlignment="center"
+            android:textColor="#444444"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/q_creator_email"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="40dp"
+            android:gravity="center"
+            android:text="liuqin@nju.edu.cn"
+            android:textColor="#444"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#cccccc"
+        android:layout_marginTop="10dp"
+        android:background="@color/red"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="50dp" >
 
         <Button
-            android:id="@+id/look_score"
+            android:id="@+id/back_bottom_btn"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="40dp"
@@ -320,7 +340,6 @@
             android:background="@drawable/btn_out"
             android:textColor="@color/white"
             android:textSize="19sp"
-            android:text="查看分数" />
+            android:text="返回" />
     </LinearLayout>
-
 </LinearLayout>

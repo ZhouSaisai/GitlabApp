@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by zs on 2017/6/12.
  */
 
-class Question implements Serializable{
+public class Question implements Serializable{
     //"id": 1,
     @SerializedName("id")
     private int qId;

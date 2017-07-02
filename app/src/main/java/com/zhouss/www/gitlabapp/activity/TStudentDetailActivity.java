@@ -34,8 +34,6 @@ public class TStudentDetailActivity extends BaseActivity implements View.OnClick
     //选中的学生
     private ClassStudent selectStudent;
 
-    //学生信息区
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

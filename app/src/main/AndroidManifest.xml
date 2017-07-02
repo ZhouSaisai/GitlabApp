@@ -25,6 +25,7 @@
         <activity android:name=".activity.TStudentActivity" />
         <activity android:name=".activity.TStudentDetailActivity" />
         <activity android:name=".activity.TTaskDetailActivity" />
+        <activity android:name=".activity.TQuestionDetailActivity" />
     </application>
 
 </manifest>

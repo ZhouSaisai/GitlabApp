@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/question_item" />
+
+        <TextView
+            android:id="@+id/q_id"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="38dp"
+            android:gravity="center"
+            android:text="141"
+            android:textAlignment="center"
+            android:textColor="#444444"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/q_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="75dp"
+            android:gravity="center"
+            android:text="题目一"
+            android:textAlignment="center"
+            android:textColor="#444444"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/q_level"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="45dp"
+            android:gravity="center"
+            android:text="考试中"
+            android:textColor="#444"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/class_enter"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="right"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/red_enter" />
+
+    </RelativeLayout>
+</LinearLayout>
