@@ -26,6 +26,7 @@
         <activity android:name=".activity.TStudentDetailActivity" />
         <activity android:name=".activity.TTaskDetailActivity" />
         <activity android:name=".activity.TQuestionDetailActivity" />
+        <activity android:name=".activity.TTaskScoreActivity" />
     </application>
 
 </manifest>

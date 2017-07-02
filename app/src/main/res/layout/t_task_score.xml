@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#e03f30"
+        android:id="@+id/relativeLayout"
+        android:fitsSystemWindows="true" >
+
+        <TextView
+            android:id="@+id/title_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textAlignment="center"
+            android:text="分数详情"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_back"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginTop="6dp" >
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="31dp"
+            android:src="@drawable/line_header" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="30dp"
+            android:src="@drawable/line"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="18dp"
+            android:layout_marginTop="-3dp"
+            android:textSize="20sp"
+            android:textColor="@color/red"
+            android:text="基本信息"/>
+
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.75dp"
+        android:layout_marginTop="-2.3dp"
+        android:background="@color/red"
+        />
+
+
+    <TextView
+        android:id="@+id/st_name"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="任务名"
+        android:textColor="#444444"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/st_id"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="ID:1"
+        android:textColor="#444444"
+        android:textSize="17sp"/>
+
+    <TextView
+        android:id="@+id/st_description"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="描述"
+        android:textColor="#444444"
+        android:textSize="17sp"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.75dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="-2.3dp"
+        android:background="@color/red"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:text="成绩列表"
+            android:textColor="@color/red"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/line_down" />
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="31dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/line_header"
+            android:layout_marginTop="10dp"/>
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="#cccccc"
+        />
+
+    <ListView
+        android:id="@+id/score_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+
+</LinearLayout>

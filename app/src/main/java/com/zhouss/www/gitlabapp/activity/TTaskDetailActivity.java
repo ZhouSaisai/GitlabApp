@@ -103,6 +103,8 @@ public class TTaskDetailActivity extends BaseActivity implements View.OnClickLis
                 finish();
                 break;
             case R.id.look_score:
+                Intent intent = new Intent(TTaskDetailActivity.this, TTaskScoreActivity.class);
+                startActivity(intent);
                 break;
         }
     }

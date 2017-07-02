@@ -39,7 +39,7 @@ public class QuestionAdapter extends ArrayAdapter<Question>{
         TextView q_title = (TextView) view.findViewById(R.id.q_title);
         TextView q_level = (TextView) view.findViewById(R.id.q_level);
 
-        q_id.setText(question_item.getqId()+"");
+        q_id.setText("ID:"+question_item.getqId());
         q_title.setText(question_item.getTitle());
 
         q_level.setText(question_item.getDifficulty());

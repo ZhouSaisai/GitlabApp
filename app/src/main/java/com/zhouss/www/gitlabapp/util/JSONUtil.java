@@ -5,6 +5,10 @@ import android.text.TextUtils;
 import com.google.gson.Gson;
 import com.zhouss.www.gitlabapp.model.Class;
 import com.zhouss.www.gitlabapp.model.ClassStudent;
+import com.zhouss.www.gitlabapp.model.QuestionInfo;
+import com.zhouss.www.gitlabapp.model.QuestionScore;
+import com.zhouss.www.gitlabapp.model.Score;
+import com.zhouss.www.gitlabapp.model.ScoreResult;
 import com.zhouss.www.gitlabapp.model.Task;
 
 import org.json.JSONArray;
@@ -90,5 +94,14 @@ public class JSONUtil {
             }
         }
         return lists;
+    }
+
+    public static List<QuestionScore> handlScoreResponse(String content) {
+        if(!TextUtils.isEmpty(content)){
+            ScoreResult sr = new Gson().fromJson(content,ScoreResult.class);
+            return sr.getQuestions();
+
+        }
+        return new ArrayList<QuestionScore>();
     }
 }
