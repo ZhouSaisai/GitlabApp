@@ -2,6 +2,7 @@ package com.zhouss.www.gitlabapp.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -19,12 +20,12 @@ import android.widget.Toast;
 
 import com.zhouss.www.gitlabapp.R;
 import com.zhouss.www.gitlabapp.activity.THomeActivity;
+import com.zhouss.www.gitlabapp.activity.TStudentActivity;
 import com.zhouss.www.gitlabapp.adapter.ClassAdapter;
 import com.zhouss.www.gitlabapp.model.Class;
 import com.zhouss.www.gitlabapp.util.HttpUtil;
 import com.zhouss.www.gitlabapp.util.JSONUtil;
 import com.zhouss.www.gitlabapp.util.MyApplication;
-import com.zhouss.www.gitlabapp.util.ProgressUtil;
 
 import org.litepal.crud.DataSupport;
 
@@ -63,10 +64,8 @@ public class ClassFragment extends Fragment {
                     classList.clear();
                     classList.addAll(newList);
                     classArrayAdapter.notifyDataSetChanged();
-                    ProgressUtil.closeProgressDialog();
                     break;
                 case QUERY_FAIL:
-                    ProgressUtil.closeProgressDialog();
                     Toast.makeText(MyApplication.getContext(), "数据拉取失败", Toast.LENGTH_SHORT).show();
                     break;
             }
@@ -105,18 +104,12 @@ public class ClassFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectClass = classList.get(position);
-                classListView.setVisibility(View.INVISIBLE);
-                FragmentManager manager = getFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                StudentFragment studentFragment = new StudentFragment();
-                //传递参数
-                Bundle bundle = new Bundle();
-                bundle.putInt("classId", selectClass.getcId());
-                bundle.putString("cName",selectClass.getName());
-                studentFragment.setArguments(bundle);
 
-                transaction.replace(R.id.content, studentFragment);
-                transaction.commit();
+                Intent intent = new Intent();
+                intent.putExtra("classId",selectClass.getcId());
+                intent.putExtra("className",selectClass.getName());
+                intent.setClass(getActivity(), TStudentActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -136,7 +129,6 @@ public class ClassFragment extends Fragment {
     }
 
     private void queryFromServer(String address) {
-        ProgressUtil.showProgressDialog(getActivity());
         HttpUtil.sendGetOkHttpRequest(address, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {

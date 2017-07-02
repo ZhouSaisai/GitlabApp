@@ -22,6 +22,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.THomeActivity" />
+        <activity android:name=".activity.TStudentActivity" />
+        <activity android:name=".activity.TStudentDetailActivity" />
+        <activity android:name=".activity.TTaskDetailActivity" />
     </application>
 
 </manifest>

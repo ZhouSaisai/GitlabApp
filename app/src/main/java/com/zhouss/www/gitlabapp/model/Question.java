@@ -2,11 +2,13 @@ package com.zhouss.www.gitlabapp.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by zs on 2017/6/12.
  */
 
-class Question {
+class Question implements Serializable{
     //"id": 1,
     @SerializedName("id")
     private int qId;

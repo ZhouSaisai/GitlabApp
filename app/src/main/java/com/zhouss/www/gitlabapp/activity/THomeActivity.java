@@ -22,7 +22,7 @@ import java.util.List;
  * Created by zs on 2017/6/14.
  */
 
-public class THomeActivity extends BaseActivity implements View.OnClickListener,BottomNavigationBar.OnTabSelectedListener{
+public class THomeActivity extends BaseActivity implements BottomNavigationBar.OnTabSelectedListener{
     private BottomNavigationBar mBottomNavigationBar;
     private ClassFragment classFragment;
     private TaskFragment taskFragment;
@@ -144,12 +144,9 @@ public class THomeActivity extends BaseActivity implements View.OnClickListener,
         transaction.commit();
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.back_button:
-                getSupportFragmentManager().popBackStack();
-                break;
-        }
+
+    public List<Fragment> getList() {
+        return list;
     }
+
 }

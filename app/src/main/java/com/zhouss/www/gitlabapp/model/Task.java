@@ -2,13 +2,14 @@ package com.zhouss.www.gitlabapp.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by zs on 2017/6/12.
  */
 
-public class Task {
+public class Task implements Serializable{
     //"id": 3,
     @SerializedName("id")
     private int tId;

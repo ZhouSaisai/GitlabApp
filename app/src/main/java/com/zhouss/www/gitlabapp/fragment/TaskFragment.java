@@ -2,6 +2,7 @@ package com.zhouss.www.gitlabapp.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,6 +22,7 @@ import android.widget.Toast;
 
 import com.zhouss.www.gitlabapp.R;
 import com.zhouss.www.gitlabapp.activity.THomeActivity;
+import com.zhouss.www.gitlabapp.activity.TTaskDetailActivity;
 import com.zhouss.www.gitlabapp.adapter.TaskAdapter;
 import com.zhouss.www.gitlabapp.model.Task;
 import com.zhouss.www.gitlabapp.util.HttpUtil;
@@ -54,15 +57,20 @@ public class TaskFragment extends Fragment implements View.OnClickListener{
 
     private ListView listView;
     private List<Task> taskList = new ArrayList<>();
+    private List<Task> tempList = new ArrayList<>();
+
     private TaskAdapter taskAdapter;
 
     private int courseId = 2;
+    private Task selectTask;
 
     //异步更新UI-hander
     private Handler handler = new Handler(){
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case QUERY_SUCCESS:
+                    taskList.clear();
+                    taskList.addAll(tempList);
                     taskAdapter.notifyDataSetChanged();
                     break;
                 case QUERY_FAIL:
@@ -86,6 +94,7 @@ public class TaskFragment extends Fragment implements View.OnClickListener{
         title_bar.setText("发布的任务");
         add_button.setVisibility(View.VISIBLE);
         back_button.setVisibility(View.INVISIBLE);
+        add_button.setOnClickListener(this);
     }
 
     @Override
@@ -102,13 +111,29 @@ public class TaskFragment extends Fragment implements View.OnClickListener{
         exercise_tab.setOnClickListener(this);
 
         listView = (ListView) view.findViewById(R.id.task_list);
-        listView.addHeaderView(new ViewStub(getContext()));
-//        listView.addFooterView(new ViewStub(getContext()));
 
         taskAdapter = new TaskAdapter(MyApplication.getContext(),R.layout.task_item,taskList);
         listView.setAdapter(taskAdapter);
+
         queryAllTask("exam");
+
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectTask = taskList.get(position);
+
+                Intent intent = new Intent();
+                intent.putExtra("task",selectTask);
+                intent.setClass(getActivity(), TTaskDetailActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -118,9 +143,9 @@ public class TaskFragment extends Fragment implements View.OnClickListener{
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MyApplication.getContext());
         String content = prefs.getString(type,null);
         if(content!=null){
-            List<Task> nl = JSONUtil.handlTaskResponse(content);
+            tempList = JSONUtil.handlTaskResponse(content);
             taskList.clear();
-            taskList.addAll(nl);
+            taskList.addAll(tempList);
             taskAdapter.notifyDataSetChanged();
         }
         else {
@@ -147,9 +172,7 @@ public class TaskFragment extends Fragment implements View.OnClickListener{
                 editor.putString(type,resultData);
                 editor.apply();
 
-                List<Task> nl = JSONUtil.handlTaskResponse(resultData);
-                taskList.clear();
-                taskList.addAll(nl);
+                tempList = JSONUtil.handlTaskResponse(resultData);
 
                 Message message = new Message();
                 message.what=QUERY_SUCCESS;
@@ -187,6 +210,9 @@ public class TaskFragment extends Fragment implements View.OnClickListener{
                 exam_tab.setTextColor(Color.parseColor("#e03f30"));
                 exam_tab.setBackgroundResource(R.drawable.btn_bg_normal_l);
                 queryAllTask("exercise");
+                break;
+            case R.id.add_button:
+                Toast.makeText(getActivity(), "后台没有接口哦！", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

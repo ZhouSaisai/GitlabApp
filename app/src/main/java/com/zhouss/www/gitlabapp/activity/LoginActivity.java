@@ -69,6 +69,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                         intent.setClass(MyApplication.getContext(),SHomeActivity.class);
                     }
                     startActivity(intent);
+                    finish();
                     break;
                 case LOGIN_FAIL:
                     Toast.makeText(MyApplication.getContext(), "用户名和密码都要输入哦！", Toast.LENGTH_SHORT).show();

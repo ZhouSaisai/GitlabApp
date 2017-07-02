@@ -2,11 +2,13 @@ package com.zhouss.www.gitlabapp.model;
 
 import org.litepal.crud.DataSupport;
 
+import java.io.Serializable;
+
 /**
  * Created by zs on 2017/6/19.
  */
 
-public class ClassStudent extends DataSupport{
+public class ClassStudent extends DataSupport implements Serializable{
     //学生id
     private int csId;
     //用户名: "131250106",

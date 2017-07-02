@@ -35,11 +35,42 @@ public class TaskAdapter extends ArrayAdapter<Task>{
             view = convertView;
         }
 
-        TextView class_id = (TextView) view.findViewById(R.id.task_item_id);
-        TextView class_name = (TextView) view.findViewById(R.id.task_item_name);
-        class_id.setText(task_item.gettId()+"");
-        class_name.setText(task_item.getTitle());
+        TextView t_id = (TextView) view.findViewById(R.id.t_id);
+        TextView t_title = (TextView) view.findViewById(R.id.t_title);
+        TextView t_status = (TextView) view.findViewById(R.id.t_status);
 
+        t_id.setText(task_item.gettId()+"");
+        t_title.setText(task_item.getTitle());
+        String status = task_item.getStatus();
+        String result = "";
+        switch (status){
+            case "newly":
+                result = "新建态";
+                break;
+            case "initing":
+                result = "初始化";
+                break;
+            case "initFail":
+                result = "初始化失败";
+                break;
+            case "initSuccess":
+                result = "初始化成功";
+                break;
+            case "ongoing":
+                result = "考试进行中";
+                break;
+            case "timeup":
+                result = "考试时间到";
+                break;
+            case "analyzing":
+                result = "分析结果中";
+                break;
+            case "analyzingFinish":
+                result = "分析完成";
+                break;
+
+        }
+        t_status.setText(result);
         return view;
     }
 }
