@@ -63,8 +63,22 @@
     <ListView
         android:id="@+id/students_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:visibility="visible">
     </ListView>
+
+    <Button
+        android:id="@+id/back_bottom_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/btn_out"
+        android:textColor="@color/white"
+        android:textSize="19sp"
+        android:text="返回" />
 
 </LinearLayout>

@@ -244,6 +244,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 teacher.setInfo(info);
             }else if(type.equals("student")){
                 TokenUtil.setType(UserType.STUDENT);
+                //硬编码-该学生后台对应接口没数据，不能传真实值只能这样了
+                TokenUtil.setU_id(254);
                 info.setType(UserType.STUDENT);
                 Student student = new Student();
                 student.setInfo(info);

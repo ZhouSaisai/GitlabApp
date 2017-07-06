@@ -42,6 +42,7 @@ public class TStudentActivity extends BaseActivity implements View.OnClickListen
     private Button add_button;
     private Button back_button;
     private TextView empty_text;
+    private Button back_bottom_btn;
 
     //list区
     private ListView studentListView;
@@ -64,7 +65,8 @@ public class TStudentActivity extends BaseActivity implements View.OnClickListen
         back_button = (Button) findViewById(R.id.back_button);
         add_button = (Button)  findViewById(R.id.add_button);
         empty_text = (TextView) findViewById(R.id.empty_text);
-
+        back_bottom_btn = (Button) findViewById(R.id.back_bottom_btn);
+        back_bottom_btn.setOnClickListener(this);
         back_button.setOnClickListener(this);
         add_button.setOnClickListener(this);
 
@@ -158,6 +160,7 @@ public class TStudentActivity extends BaseActivity implements View.OnClickListen
             case R.id.add_button:
                 Toast.makeText(this, "后台没有接口哦！", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.back_bottom_btn:
             case R.id.back_button:
                 finish();
                 break;

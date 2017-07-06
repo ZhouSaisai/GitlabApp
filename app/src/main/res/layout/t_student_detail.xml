@@ -283,4 +283,17 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#8a8a8a" />
+
+    <Button
+        android:id="@+id/back_bottom_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/btn_out"
+        android:textColor="@color/white"
+        android:textSize="19sp"
+        android:text="返回" />
+
 </LinearLayout>

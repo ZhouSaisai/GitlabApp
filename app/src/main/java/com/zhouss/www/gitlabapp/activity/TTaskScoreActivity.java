@@ -1,5 +1,6 @@
 package com.zhouss.www.gitlabapp.activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.zhouss.www.gitlabapp.R;
 import com.zhouss.www.gitlabapp.adapter.ScoreListAdapter;
+import com.zhouss.www.gitlabapp.model.AnalyseData;
 import com.zhouss.www.gitlabapp.model.QuestionInfo;
 import com.zhouss.www.gitlabapp.model.QuestionScore;
 import com.zhouss.www.gitlabapp.model.Score;
@@ -40,6 +42,9 @@ public class TTaskScoreActivity extends BaseActivity implements View.OnClickList
 
     //组件区
     private Button back_button;
+    private Button back_bottom_btn;
+    private Button scores_analyse;
+
     private TextView st_name;
     private TextView st_id;
     private TextView st_description;
@@ -57,7 +62,12 @@ public class TTaskScoreActivity extends BaseActivity implements View.OnClickList
         setContentView(R.layout.t_task_score);
 
         back_button = (Button) findViewById(R.id.back_button);
+        back_bottom_btn = (Button) findViewById(R.id.back_bottom_btn);
+        scores_analyse = (Button) findViewById(R.id.scores_analyse);
+        back_bottom_btn.setOnClickListener(this);
         back_button.setOnClickListener(this);
+        scores_analyse.setOnClickListener(this);
+
         st_name = (TextView) findViewById(R.id.st_name);
         st_id = (TextView) findViewById(R.id.st_id);
         st_description = (TextView) findViewById(R.id.st_description);
@@ -141,10 +151,64 @@ public class TTaskScoreActivity extends BaseActivity implements View.OnClickList
     public void onClick(View v) {
         int id = v.getId();
         switch (id){
+            case R.id.back_bottom_btn:
             case R.id.back_button:
                 finish();
                 break;
+            case R.id.scores_analyse:
+                AnalyseData data = analyseList();
+                Intent intent = new Intent(TTaskScoreActivity.this,TTaskScoreAnalyseActivity.class);
+                intent.putExtra("data",data);
+                startActivity(intent);
+                break;
         }
+    }
+
+    private AnalyseData analyseList() {
+        int max = 0;
+        int min = 100;
+        int sum = 0;
+        int count = 0;
+        int noCount = 0;
+        int m90 = 0;
+        int m80 = 0;
+        int m60 = 0;
+        int m0 = 0;
+        double ave =0.0;
+        for(Score score:scoreList){
+            if(!score.isScored()){
+                noCount++;
+                continue;
+            }
+            int s = score.getScore();
+            if(max<s) max=s;
+            if(min>s) min=s;
+            sum+=s;
+            count++;
+            if(s<60){
+                m0++;
+            }else if(s<80){
+                m60++;
+            }else if(s<90){
+                m80++;
+            }else{
+                m90++;
+            }
+        }
+        if(count!=0) {
+            ave = sum * 1.0 / count;
+        }
+        AnalyseData data = new AnalyseData();
+        data.setMax_score(max);
+        data.setMin_score(min);
+        data.setAve_score(ave);
+        data.setS_count(scoreList.size());
+        data.setS0(m0);
+        data.setS60(m60);
+        data.setS80(m80);
+        data.setS90(m90);
+        data.setSno(noCount);
+        return data;
     }
 
     //异步更新UI-hander

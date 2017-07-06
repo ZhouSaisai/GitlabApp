@@ -28,6 +28,9 @@
         <activity android:name=".activity.TQuestionDetailActivity" />
         <activity android:name=".activity.TTaskScoreActivity" />
         <activity android:name=".activity.SHomeActivity" />
+        <activity android:name=".activity.SScoreDetailActivity" />
+        <activity android:name=".activity.STaskScoreAnalyseActivity" />
+        <activity android:name=".activity.TTaskScoreAnalyseActivity" />
     </application>
 
 </manifest>

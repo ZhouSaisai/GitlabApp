@@ -10,6 +10,8 @@ import com.zhouss.www.gitlabapp.model.QuestionScore;
 import com.zhouss.www.gitlabapp.model.Score;
 import com.zhouss.www.gitlabapp.model.ScoreResult;
 import com.zhouss.www.gitlabapp.model.Task;
+import com.zhouss.www.gitlabapp.model.TestCase;
+import com.zhouss.www.gitlabapp.model.TestScore;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -103,5 +105,37 @@ public class JSONUtil {
 
         }
         return new ArrayList<QuestionScore>();
+    }
+
+    public static String handlReadMeResponse(String resultData) {
+        if(!TextUtils.isEmpty(resultData)){
+            try {
+                JSONObject object = new JSONObject(resultData);
+                return object.getString("content");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return "无readme内容！";
+    }
+
+    public static List<TestScore> handlTestScoreResponse(String resultData) {
+        List<TestScore> lists = new ArrayList<>();
+        if(!TextUtils.isEmpty(resultData)){
+            try {
+                JSONObject o = new JSONObject(resultData);
+                JSONArray arrays = o.getJSONArray("questionResults");
+
+                for(int i=0;i<arrays.length();i++){
+                    String object = arrays.getJSONObject(i).toString();
+                    TestScore testScore = new Gson().fromJson(object,TestScore.class);
+                    lists.add(testScore);
+                }
+                return lists;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return new ArrayList<TestScore>();
     }
 }

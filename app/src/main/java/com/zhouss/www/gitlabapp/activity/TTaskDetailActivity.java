@@ -11,10 +11,12 @@ import android.widget.Toast;
 
 import com.zhouss.www.gitlabapp.R;
 import com.zhouss.www.gitlabapp.adapter.QuestionAdapter;
+import com.zhouss.www.gitlabapp.enums.UserType;
 import com.zhouss.www.gitlabapp.model.Question;
 import com.zhouss.www.gitlabapp.model.Task;
 import com.zhouss.www.gitlabapp.util.MyApplication;
 import com.zhouss.www.gitlabapp.util.TaskStatusUtil;
+import com.zhouss.www.gitlabapp.util.TokenUtil;
 
 import java.util.List;
 
@@ -27,7 +29,9 @@ public class TTaskDetailActivity extends BaseActivity implements View.OnClickLis
     private TextView title_bar;
     private Button edit_button;
     private Button back_button;
-    private Button look_score;
+
+    private Button score_analyse;
+    private Button bottom_back_btn;
 
     //任务详情
     private TextView t_title;
@@ -52,10 +56,13 @@ public class TTaskDetailActivity extends BaseActivity implements View.OnClickLis
         title_bar = (TextView) findViewById(R.id.title_bar);
         back_button = (Button) findViewById(R.id.back_button);
         edit_button = (Button)  findViewById(R.id.edit_button);
-        look_score = (Button)  findViewById(R.id.look_score);
         back_button.setOnClickListener(this);
         edit_button.setOnClickListener(this);
-        look_score.setOnClickListener(this);
+
+        score_analyse = (Button) findViewById(R.id.score_analyse);
+        bottom_back_btn = (Button) findViewById(R.id.back_bottom_btn);
+        score_analyse.setOnClickListener(this);
+        bottom_back_btn.setOnClickListener(this);
 
         t_title = (TextView) findViewById(R.id.t_title);
         t_item_id = (TextView) findViewById(R.id.t_item_id);
@@ -88,6 +95,10 @@ public class TTaskDetailActivity extends BaseActivity implements View.OnClickLis
                 startActivity(intent);
             }
         });
+
+        if(TokenUtil.getType()== UserType.TEACHER){
+            score_analyse.setVisibility(View.GONE);
+        }
     }
 
 
@@ -99,11 +110,12 @@ public class TTaskDetailActivity extends BaseActivity implements View.OnClickLis
             case R.id.edit_button:
                 Toast.makeText(this, "后台没有接口哦！", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.back_bottom_btn:
             case R.id.back_button:
                 finish();
                 break;
-            case R.id.look_score:
-                Intent intent = new Intent(TTaskDetailActivity.this, TTaskScoreActivity.class);
+            case R.id.score_analyse:
+                Intent intent = new Intent(TTaskDetailActivity.this, STaskScoreAnalyseActivity.class);
                 startActivity(intent);
                 break;
         }

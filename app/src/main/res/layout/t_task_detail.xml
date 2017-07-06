@@ -308,11 +308,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="50dp">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:orientation="vertical" >
 
         <Button
-            android:id="@+id/look_score"
+            android:id="@+id/score_analyse"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="40dp"
@@ -320,7 +321,20 @@
             android:background="@drawable/btn_out"
             android:textColor="@color/white"
             android:textSize="19sp"
-            android:text="查看分数" />
+            android:text="成绩分析" />
+
+        <Button
+            android:id="@+id/back_bottom_btn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/btn_white"
+            android:textColor="@color/red"
+            android:textSize="19sp"
+            android:text="返回" />
+
     </LinearLayout>
 
 </LinearLayout>

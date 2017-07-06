@@ -20,6 +20,7 @@ public class TStudentDetailActivity extends BaseActivity implements View.OnClick
     private TextView title_bar;
     private Button edit_button;
     private Button back_button;
+    private Button back_bottom_btn;
 
     private TextView s_name;
     private TextView s_email;
@@ -43,8 +44,10 @@ public class TStudentDetailActivity extends BaseActivity implements View.OnClick
         title_bar = (TextView) findViewById(R.id.title_bar);
         back_button = (Button) findViewById(R.id.back_button);
         edit_button = (Button)  findViewById(R.id.edit_button);
+        back_bottom_btn = (Button)  findViewById(R.id.back_bottom_btn);
         back_button.setOnClickListener(this);
         edit_button.setOnClickListener(this);
+        back_bottom_btn.setOnClickListener(this);
 
         s_name = (TextView) findViewById(R.id.s_name);
         s_email = (TextView) findViewById(R.id.s_email);
@@ -86,6 +89,7 @@ public class TStudentDetailActivity extends BaseActivity implements View.OnClick
             case R.id.edit_button:
                 Toast.makeText(this, "后台没有接口哦！", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.back_bottom_btn:
             case R.id.back_button:
                 finish();
                 break;
