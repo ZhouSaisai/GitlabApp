@@ -242,7 +242,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 Teacher teacher = new Teacher();
                 teacher.setAuthority(json.getInt("authority"));
                 teacher.setInfo(info);
-//                Log.d("teacher",teacher.toString());
             }else if(type.equals("student")){
                 TokenUtil.setType(UserType.STUDENT);
                 info.setType(UserType.STUDENT);

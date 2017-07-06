@@ -17,12 +17,12 @@
 
         <TextView
             android:id="@+id/q_id"
-            android:layout_width="40dp"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="38dp"
+            android:layout_marginStart="40dp"
             android:gravity="center"
-            android:text="141"
+            android:text="ID:141"
             android:textAlignment="center"
             android:textColor="#444444"
             android:textSize="18sp" />
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="75dp"
+            android:layout_marginStart="90dp"
             android:gravity="center"
             android:text="题目一"
             android:textAlignment="center"
@@ -45,7 +45,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="45dp"
+            android:layout_marginEnd="40dp"
             android:gravity="center"
             android:text="考试中"
             android:textColor="#444"
