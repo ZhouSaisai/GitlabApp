@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -75,6 +76,14 @@ public class TTaskScoreActivity extends BaseActivity implements View.OnClickList
         scoreListView = (ListView) findViewById(R.id.score_list);
         scoreAdpter = new ScoreListAdapter(MyApplication.getContext(),R.layout.score_item,scoreList);
         scoreListView.setAdapter(scoreAdpter);
+
+        scoreListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(TTaskScoreActivity.this,SScoreDetailActivity.class);
+                startActivity(intent);
+            }
+        });
 
         int i = new Random().nextInt(2);
         if(i==1){
