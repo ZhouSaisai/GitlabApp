@@ -25,33 +25,42 @@ Android Studio + API
 项目截图
 
 1)登录
+
 ![Image text](https://github.com/ZhouSaisai/img-folder/blob/master/gitlab/gitlab-01.png)
 
 2)查看学生列表
+
 ![Image text](https://github.com/ZhouSaisai/img-folder/blob/master/gitlab/gitlab-02.png)
 ![Image text](https://github.com/ZhouSaisai/img-folder/blob/master/gitlab/gitlab-03.png)
 ![Image text](https://github.com/ZhouSaisai/img-folder/blob/master/gitlab/gitlab-04.png)
 
 3)查看作业、练习和考试列表
+
 ![Image text](https://github.com/ZhouSaisai/img-folder/blob/master/gitlab/gitlab-05.png)
 ![Image text](https://github.com/ZhouSaisai/img-folder/blob/master/gitlab/gitlab-06.png)
 ![Image text](https://github.com/ZhouSaisai/img-folder/blob/master/gitlab/gitlab-07.png)
 
 4)考试分析和分数段
+
 ![Image text](https://github.com/ZhouSaisai/img-folder/blob/master/gitlab/gitlab-08.png)
 ![Image text](https://github.com/ZhouSaisai/img-folder/blob/master/gitlab/gitlab-09.png)
 
 5)个人信息
+
 ![Image text](https://github.com/ZhouSaisai/img-folder/blob/master/gitlab/gitlab-10.png)
 
 6)学生查看任务
+
 ![Image text](https://github.com/ZhouSaisai/img-folder/blob/master/gitlab/gitlab-12.png)
 
 7)学生查看分数统计
+
 ![Image text](https://github.com/ZhouSaisai/img-folder/blob/master/gitlab/gitlab-11.png)
 
 8)read_me
+
 ![Image text](https://github.com/ZhouSaisai/img-folder/blob/master/gitlab/gitlab-13.png)
 
 9)学生考试分析
+
 ![Image text](https://github.com/ZhouSaisai/img-folder/blob/master/gitlab/gitlab-14.png)
